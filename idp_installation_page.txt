@@ -19,14 +19,20 @@ Authentication service
     Page Should Contain    Test configured authentication sources
     Click Link    Test configured authentication sources
     Page Should Contain    Test authentication sources
-ForgeLDAP authentication service
+ForgeLDAP authentication service Should FAIL
     Click Link    FORGEldap
+    Page Should Contain    Enter your username and password
+    Input Text    id=username    username
+    Input Text    id=password    password
+    Click Element    id=regularsubmit
+    Page Should Contain    Incorrect username or password
+ForgeLDAP authentication service
     Page Should Contain    Enter your username and password
     Input Text    id=username    ${username}
     Input Text    id=password    ${password}
     Click Element    id=regularsubmit
     Page Should Contain    ${username}
-    Page Should Contain    inetOrgPerso
+    Page Should Contain    inetOrgPerson
     
 
 
