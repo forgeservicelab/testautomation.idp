@@ -1,0 +1,32 @@
+*** Settings ***
+Documentation    Test idp service by authentication to ForgeLDAP
+Suite Setup    Go to homepage
+Suite Teardown    Close All Browsers
+Resource    ./common/assets/secrets.txt
+Resource    ./common/assets/resource.txt
+Resource    local_resource.txt
+ 
+*** Variables ***
+${username}    ${VALID_PARTNER}
+${password}    ${VALID_PARTNER_PASSWORD}
+
+
+*** Test Cases ***
+Check home page
+    Page Should Contain    Congratulations, you have successfully installed simpleSAMLphp. 
+Authentication service
+    Click Link    Authentication
+    Page Should Contain    Test configured authentication sources
+    Click Link    Test configured authentication sources
+    Page Should Contain    Test authentication sources
+ForgeLDAP authentication service
+    Click Link    FORGEldap
+    Page Should Contain    Enter your username and password
+    Input Text    id=username    ${username}
+    Input Text    id=password    ${password}
+    Click Element    id=regularsubmit
+    Page Should Contain    ${username}
+    Page Should Contain    inetOrgPerso
+    
+
+
