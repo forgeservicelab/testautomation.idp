@@ -29,7 +29,9 @@ ForgeLDAP authentication service Should FAIL
 ForgeLDAP authentication service
     Page Should Contain    Enter your username and password
     Input Text    id=username    ${username}
+    Set Log Level    NONE
     Input Text    id=password    ${password}
+    Set Log Level    DEBUG
     Click Element    id=regularsubmit
     Page Should Contain    ${username}
     Page Should Contain    inetOrgPerson
